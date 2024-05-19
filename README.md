@@ -12,7 +12,7 @@ Google slides for the course are found [here](https://bit.ly/GPMAGICQUERY)
 # Course Flow
 Follow the steps below to go through the course:
 
-1. [Deploy Greenplum Env](https://github.com/greenplum-db/gp-magic-query/blob/master/deploy.md)
+1. [Deploy Greenplum Env](./deploy.md)
 1. [Load Twitter Data](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework)
 1. [Learn to Connect to GPDB with a Python Client](https://github.com/greenplum-db/gp-magic-query/tree/master/pyclient)
 1. [Write Server Side Python User Defined Functions](https://github.com/greenplum-db/gp-magic-query/tree/master/pyserver)
