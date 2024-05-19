@@ -59,6 +59,7 @@ Copy software to linux as root user
 ```
 cp /mnt/c/Users/ivan/Downloads/greenplum-db-7.1.0-el8-x86_64.rpm .
 dnf install greenplum-db-7.1.0-el8-x86_64.rpm
+chown -R gpadmin:gpadmin /usr/local/greenplum-db/
 ```
 
 - Add this content to .bashrc for gpadmin
