@@ -8,5 +8,5 @@
 Write a SQL to Find the 5 most active twitter user names and how many tweets they have
 
 ## STEP 4: SQL EXERCISE 2
-Write a SQL to Find the 5 most active twitter user names and how many tweets they have but only tweets in Spanish
+Write a SQL to Find the 5 most active twitter user names that tweet in spanish and how many tweets they have but only tweets in Spanish
 
