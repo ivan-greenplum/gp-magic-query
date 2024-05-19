@@ -19,6 +19,7 @@ $ sudo su -  gpadmin
 sudo dnf makecache
 sudo dnf check-update
 sudo dnf update
+sudo dnf install openssh-server
 sudo dnf install vim
 ```
 
@@ -34,11 +35,17 @@ gpadmin ALL=(ALL) NOPASSWD: ALL
 
 - Setup ping and ssh
 ```
+# Login as root
+ssh-keygen -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N ''
+ssh-keygen -t ecdsa -b 256 -f /etc/ssh/ssh_host_ecdsa_key -N ''
+ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ''
+/usr/sbin/sshd
+
 # Login as gpadmin
 ssh-keygen -t rsa -b 2048
 ssh-copy-id gpadmin@127.0.0.1
-
 ```
+test ssh to 127.0.0.1 with no password to ensure this is ready
 
 # How to install on GCP Manually
 
