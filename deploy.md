@@ -63,7 +63,7 @@ dnf install greenplum-db-7.1.0-el8-x86_64.rpm
 
 - Add this content to .bashrc for gpadmin
 ```
-export GPHOME=/usr/local/greenplum-db/greenplum_path.sh
+export GPHOME=/usr/local/greenplum-db
 . $GPHOME/greenplum_path.sh
 ```
 . .bashrc
@@ -72,7 +72,18 @@ export GPHOME=/usr/local/greenplum-db/greenplum_path.sh
 ```
 mkdir gp
 cd gp
+cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_singlenode .
 ```
+Now edit gpinitsystem_singelnode by updating these lines:
+```
+declare -a DATA_DIRECTORY=(/home/gpadmin/gp /home/gpadmin/gp)
+COORDINATOR_HOSTNAME=127.0.0.1
+COORDINATOR_DIRECTORY=/home/gpadmin/gp
+```
+
+Create hostlist_singlenode file in /home/gpadmin/gp and add only 127.0.0.1 to the file
+
+
 
 # How to install on GCP Manually
 
