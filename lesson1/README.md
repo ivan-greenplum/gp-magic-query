@@ -17,5 +17,10 @@ create language plpython3u;
 create a function that returns the first 20 characters of a tweet and CAPITALIZES the tweet if its "possibly_sensitive" according to the "possibly_sensitive" column
 Call the function and return the output for all tweets and output to a data file with the function return value and the "possibly_sensitive" column seperated as a CSV file called data.csv
 
+## Step 7: JSON Exercise 1
+Select the coordinates of tweets that have valid data and don't return a null json output.  Print coordinates as text
+
+## Step 8: JSON Exercise 2
+Select the non-null geocoordinates tweets returning user_location field, and then longitude and lattitude field.  Confirm online with google/chatgpt that the user_location matches the long/lat 
 
 
