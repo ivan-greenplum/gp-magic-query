@@ -83,7 +83,21 @@ COORDINATOR_DIRECTORY=/home/gpadmin/gp
 
 Create hostlist_singlenode file in /home/gpadmin/gp and add only 127.0.0.1 to the file
 
+- initialize the clsuter [ Note if ssh error comes up first time enter yes ]
+```
+gpinitsystem -c gpinitsystem_singlenode
+```
 
+add to .bashrc this variable
+```
+export COORDINATOR_DATA_DIRECTORY=/home/gpadmin/gp/gpsne-1
+```
+
+Validate that  you can restart Greenplum
+```
+gpstop
+gpstart
+```
 
 # How to install on GCP Manually
 
