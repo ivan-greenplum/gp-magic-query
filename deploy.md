@@ -61,15 +61,18 @@ cp /mnt/c/Users/ivan/Downloads/greenplum-db-7.1.0-el8-x86_64.rpm .
 dnf install greenplum-db-7.1.0-el8-x86_64.rpm
 ```
 
+- Add this content to .bashrc for gpadmin
+```
+export GPHOME=/usr/local/greenplum-db/greenplum_path.sh
+. $GPHOME/greenplum_path.sh
+```
+. .bashrc
+
 - Initialize Greenplum
 ```
 mkdir gp
 cd gp
-echo "export GPHOME=/usr/local/greenplum-db/greenplum_path.sh" >> ~/.bashrc
-echo ". $GPHOME/greenplum_path.sh" >> ~/.bashrc
-. .bashrc
 ```
-
 
 # How to install on GCP Manually
 
