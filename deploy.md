@@ -20,6 +20,7 @@ sudo dnf makecache
 sudo dnf check-update
 sudo dnf update
 sudo dnf install openssh-server
+sudo dnf install libcap
 sudo dnf install vim
 ```
 
@@ -46,6 +47,14 @@ ssh-keygen -t rsa -b 2048
 ssh-copy-id gpadmin@127.0.0.1
 ```
 test ssh to 127.0.0.1 with no password to ensure this is ready
+
+setup ping
+```
+sudo setcap cap_net_raw+p /usr/bin/ping
+```
+Test ping to 127.0.0.1
+
+
 
 # How to install on GCP Manually
 
