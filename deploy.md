@@ -99,10 +99,6 @@ gpstop
 gpstart
 ```
 
-# How to install on GCP Manually
-
-
-
 # How to install GPText ontop of the Greenplum deploy
 
 ### Login to master as gpadmin
