@@ -10,3 +10,12 @@ Write a SQL to Find the 5 most active twitter user names and how many tweets the
 ## STEP 4: SQL EXERCISE 2
 Write a SQL to Find the 5 most active twitter user names that tweet in spanish and how many tweets they have but only tweets in Spanish
 
+## STEP 5: Install PL/Python in twitter database
+create language plpython3u;
+
+## STEP 6: PL/Python Exercise 1
+create a function that returns the first 20 characters of a tweet and CAPITALIZES the tweet if its "possibly_sensitive" according to the "possibly_sensitive" column
+Call the function and return the output for all tweets and output to a data file with the function return value and the "possibly_sensitive" column seperated as a CSV file called data.csv
+
+
+
