@@ -19,6 +19,7 @@ $ sudo su -  gpadmin
 sudo dnf makecache
 sudo dnf check-update
 sudo dnf update
+sudo dnf install vim
 ```
 
 - Setup user for Greenplum
@@ -26,9 +27,18 @@ sudo dnf update
 sudo groupadd gpadmin
 sudo useradd -g gpadmin gpadmin
 sudo passwd gpadmin
+visudo
+# add this line
+gpadmin ALL=(ALL) NOPASSWD: ALL
 ```
 
+- Setup ping and ssh
+```
+# Login as gpadmin
+ssh-keygen -t rsa -b 2048
+ssh-copy-id gpadmin@127.0.0.1
 
+```
 
 # How to install on GCP Manually
 
