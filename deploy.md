@@ -1,4 +1,4 @@
-# How to install Greenplum on Google
+# How to install from Google Marketplace [ note this may not provide latest software, methods below are preferred ]
 - Go to google console for Greenplum Deployment: https://console.cloud.google.com/marketplace/details/pivotal-public/pivotal-greenplum-byol
 - Click Launch
 - Choose Greenplum 6 and all optional installs
@@ -9,6 +9,31 @@
 gcloud beta compute --project "data-gpdb-ud" ssh --zone "us-east1-b" "divya-greenplum-byol-1-mdw"
 $ sudo su -  gpadmin
 ```
+
+# How to install on Windows
+- Install Rocky Linux version 8 using Microsoft Store
+- Make sure Rocky Linux is working from Windows
+
+- Update OS:
+```
+sudo dnf makecache
+sudo dnf check-update
+sudo dnf update
+```
+
+- Setup user for Greenplum
+```
+sudo groupadd gpadmin
+sudo useradd -g gpadmin gpadmin
+sudo passwd gpadmin
+```
+
+
+
+# How to install on GCP Manually
+
+
+
 # How to install GPText ontop of the Greenplum deploy
 
 ### Login to master as gpadmin
