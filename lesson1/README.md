@@ -23,4 +23,10 @@ Select the coordinates of tweets that have valid data and don't return a null js
 ## Step 8: JSON Exercise 2
 Select the non-null geocoordinates tweets returning user_location field, and then longitude and lattitude field.  Confirm online with google/chatgpt that the user_location matches the long/lat 
 
+## Step 9: Postgis
+Install postgis
 
+## Step 10: Use Tiger geocoder to re-run the query and step 8
+Now this time return 4 columns
+user_location, tiger geocoded location, long and lat
+Confirm they match when possible
