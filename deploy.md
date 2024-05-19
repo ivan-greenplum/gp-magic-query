@@ -48,12 +48,27 @@ ssh-copy-id gpadmin@127.0.0.1
 ```
 test ssh to 127.0.0.1 with no password to ensure this is ready
 
-setup ping
+- setup ping
 ```
 sudo setcap cap_net_raw+p /usr/bin/ping
 ```
 Test ping to 127.0.0.1
 
+- Install greenplum software
+Copy software to linux as root user
+```
+cp /mnt/c/Users/ivan/Downloads/greenplum-db-7.1.0-el8-x86_64.rpm .
+dnf install greenplum-db-7.1.0-el8-x86_64.rpm
+```
+
+- Initialize Greenplum
+```
+mkdir gp
+cd gp
+echo "export GPHOME=/usr/local/greenplum-db/greenplum_path.sh" >> ~/.bashrc
+echo ". $GPHOME/greenplum_path.sh" >> ~/.bashrc
+. .bashrc
+```
 
 
 # How to install on GCP Manually
