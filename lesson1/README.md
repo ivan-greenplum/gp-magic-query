@@ -30,6 +30,12 @@ Login to Twitter database and create the extension
 ```
 CREATE EXTENSION IF NOT EXISTS postgis;
 SELECT PostGIS_Version();
+
+CREATE EXTENSION fuzzystrmatch ;
+CREATE EXTENSION postgis_tiger_geocoder ;
+CREATE EXTENSION address_standardizer ;
+CREATE EXTENSION address_standardizer_data_us ;
+
 ```
 
 ## Step 10: Use Tiger geocoder to re-run the query and step 8
