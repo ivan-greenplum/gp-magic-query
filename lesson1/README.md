@@ -1,7 +1,7 @@
 # This is a structured lab that you can follow to use this course to learn sequentially
 
 ## STEP 1: Install Greenplum on a Linux VM or HOST
-https://github.com/ivan-greenplum/gp-magic-query/blob/main/deploy.md
+[installation](../../blob/main/deploy.md)
 
 ## STEP 2: Verify you can read and write data, gpstop, gpstart
 ```
