@@ -30,15 +30,36 @@ Login to Twitter database and create the extension
 ```
 CREATE EXTENSION IF NOT EXISTS postgis;
 SELECT PostGIS_Version();
-
-CREATE EXTENSION fuzzystrmatch ;
-CREATE EXTENSION postgis_tiger_geocoder ;
-CREATE EXTENSION address_standardizer ;
-CREATE EXTENSION address_standardizer_data_us ;
-
 ```
 
-## Step 10: Use Tiger geocoder to re-run the query and step 8
-Now this time return 4 columns
-user_location, tiger geocoded location, long and lat
-Confirm they match when possible
+## Step 10: Load USSTATES data
+```
+wget https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_500k.zip
+unzip cb_2018_us_state_500k.zip
+shp2pgsql -s 4269 -D cb_2018_us_state_500k.shp usstates > usstates.sql
+psql -f usstates.sql twitter
+```
+test in psql
+```
+select gid,name from usstates;
+```
+
+## Step 11: calculate the area of each usstates and sort by size
+use ST_Area on the geom column
+
+## Step 12: write a inner join query between tweets and usstates
+first make a copy of tweets table and filter out null geos and also add a column for geom data type using ST_GeomFromGeoJSON
+you need to transform the coordinates system of one of the tables geometry to the same as the other
+```
+ ST_Transform(t.st_geomfromgeojson, 4269)
+```
+You need to do aa join on containment of a point in a polygon, hint:
+```
+FROM public.some_tweets t
+JOIN public.usstates s ON ST_Contains
+```
+
+
+
+
+
