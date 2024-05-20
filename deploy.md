@@ -83,7 +83,9 @@ COORDINATOR_DIRECTORY=/home/gpadmin/gp
 ```
 
 Create hostlist_singlenode file in /home/gpadmin/gp and add only 127.0.0.1 to the file
-
+```
+echo "127.0.0.1" > /home/gpadmin/gp/hostlist_singlenode
+```
 - initialize the clsuter [ Note if ssh error comes up first time enter yes ]
 ```
 gpinitsystem -c gpinitsystem_singlenode
