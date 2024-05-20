@@ -66,6 +66,7 @@ chown -R gpadmin:gpadmin /usr/local/greenplum-db/
 ```
 export GPHOME=/usr/local/greenplum-db
 . $GPHOME/greenplum_path.sh
+export COORDINATOR_DATA_DIRECTORY=/home/gpadmin/gp/gpsne-1
 ```
 . .bashrc
 
