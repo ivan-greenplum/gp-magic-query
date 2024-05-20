@@ -17,9 +17,9 @@ $ sudo su -  gpadmin
 - Update OS:
 ```
 sudo dnf update
-
 sudo dnf makecache
 sudo dnf check-update
+
 sudo dnf install openssh-server
 sudo dnf install libcap
 sudo dnf install vim
@@ -35,7 +35,7 @@ visudo
 gpadmin ALL=(ALL) NOPASSWD: ALL
 ```
 
-- Setup ping and ssh
+- Setup ssh
 ```
 # Login as root
 ssh-keygen -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N ''
