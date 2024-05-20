@@ -17,8 +17,11 @@ create language plpython3u;
 create a function that returns the first 20 characters of a tweet and CAPITALIZES the tweet if its "possibly_sensitive" according to the "possibly_sensitive" column
 Call the function and return the output for all tweets and output to a data file with the function return value and the "possibly_sensitive" column seperated as a CSV file called data.csv
 
+https://www.postgresql.org/docs/9.4/plpython-funcs.html
+
 ## Step 7: JSON Exercise 1
 Select the coordinates of tweets that have valid data and don't return a null json output.  Print coordinates as text
+https://www.postgresql.org/docs/9.4/functions-json.html
 
 ## Step 8: JSON Exercise 2
 Select the non-null geocoordinates tweets returning user_location field, and then longitude and lattitude field.  Confirm online with google/chatgpt that the user_location matches the long/lat 
@@ -32,6 +35,8 @@ CREATE EXTENSION IF NOT EXISTS postgis;
 SELECT PostGIS_Version();
 ```
 
+https://postgis.net/workshops/postgis-intro/geography.html
+
 ## Step 10: Load USSTATES data
 ```
 wget https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_500k.zip
@@ -43,9 +48,15 @@ test in psql
 ```
 select gid,name from usstates;
 ```
+https://postgis.net/workshops/postgis-intro/loading_data.html
+
+
 
 ## Step 11: calculate the area of each usstates and sort by size
 use ST_Area on the geom column
+https://postgis.net/docs/ST_Area.html
+
+
 
 ## Step 12: write a inner join query between tweets and usstates
 first make a copy of tweets table and filter out null geos and also add a column for geom data type using ST_GeomFromGeoJSON
