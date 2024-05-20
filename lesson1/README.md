@@ -1,17 +1,35 @@
 # This is a structured lab that you can follow to use this course to learn sequentially
 
 ## STEP 1: Install Greenplum on a Linux VM or HOST
+https://github.com/ivan-greenplum/gp-magic-query/blob/main/deploy.md
 
 ## STEP 2: Verify you can read and write data, gpstop, gpstart
+```
+gpstop
+gpstart
+create table foo as select generate_series(1,100);
+select * from foo;
+```
 
 ## STEP 3: SQL EXERCISE 1
 Write a SQL to Find the 5 most active twitter user names and how many tweets they have
+GROUP BY QUERY
+
+EXAMPLE
+```
+SELECT Department, COUNT(EmployeeName) AS NumberOfEmployees
+FROM Employees
+GROUP BY Department;
+```
 
 ## STEP 4: SQL EXERCISE 2
 Write a SQL to Find the 5 most active twitter user names that tweet in spanish and how many tweets they have but only tweets in Spanish
+Use a where query to limit the tweets on language
 
 ## STEP 5: Install PL/Python in twitter database
+```
 create language plpython3u;
+```
 
 ## STEP 6: PL/Python Exercise 1
 create a function that returns the first 20 characters of a tweet and CAPITALIZES the tweet if its "possibly_sensitive" according to the "possibly_sensitive" column
@@ -50,12 +68,9 @@ select gid,name from usstates;
 ```
 https://postgis.net/workshops/postgis-intro/loading_data.html
 
-
-
 ## Step 11: calculate the area of each usstates and sort by size
 use ST_Area on the geom column
 https://postgis.net/docs/ST_Area.html
-
 
 
 ## Step 12: write a inner join query between tweets and usstates
