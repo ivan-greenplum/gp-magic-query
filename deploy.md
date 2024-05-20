@@ -18,7 +18,6 @@ $ sudo su -  gpadmin
 ```
 sudo dnf update
 sudo dnf makecache
-sudo dnf check-update
 
 sudo dnf install openssh-server
 sudo dnf install libcap
