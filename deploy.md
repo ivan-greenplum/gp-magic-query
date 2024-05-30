@@ -103,8 +103,5 @@ gpstop
 gpstart
 ```
 
-# How to install GPText ontop of the Greenplum deploy
 
-### Login to master as gpadmin
-* go the deployment screen on GCP and use this section to connect: **Connect with gcloud**
 
