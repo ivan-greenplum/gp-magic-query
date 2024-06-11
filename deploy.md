@@ -1,14 +1,10 @@
-# How to install from Google Marketplace [ note this may not provide latest software, methods below are preferred ]
-- Go to google console for Greenplum Deployment: https://console.cloud.google.com/marketplace/details/pivotal-public/pivotal-greenplum-byol
-- Click Launch
-- Choose Greenplum 6 and all optional installs
-- Wait for the cluster to be deployed
-- SSH to the cluster using gcloud command (More on gcloud: https://cloud.google.com/sdk/gcloud/)
+# How to install On Any Linux Host
+As the joke says, to draw an eagle, first draw the outline of the eagle.  Step 2, draw the rest of the eagle.
 
-```
-gcloud beta compute --project "data-gpdb-ud" ssh --zone "us-east1-b" "divya-greenplum-byol-1-mdw"
-$ sudo su -  gpadmin
-```
+Greenplum runs on x86 hardware with Linux.  Rocky Linux 8 is the preferred OS with the most packaging support.
+Provision a Rocky Linux 8 VM and follow the steps below roughly to get the system ready.
+
+Detailed steps are provided below for Windows, which is good for self hosted lab testing.
 
 # How to install on Windows
 - Install Rocky Linux version 8 using Microsoft Store
