@@ -92,7 +92,7 @@ Create this function
 ```
 CREATE OR REPLACE FUNCTION capitalize_string(input_text text)
 RETURNS text AS $$
-    return input_text.capitalize()
+    return input_text.upper()
 $$ LANGUAGE plpython3u;
 ```
 
