@@ -98,6 +98,12 @@ Validate that  you can restart Greenplum
 gpstop
 gpstart
 ```
-
+# Notes: For restarting
+It seems the sshd service gets stopped when rebooting the PC, so you may get errors on starting and stopping the database is sshd is not running
+to restart sshd login as root and run this commands:
+```
+sudo su -
+/usr/sbin/sshd
+```
 
 
