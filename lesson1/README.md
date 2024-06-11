@@ -51,6 +51,37 @@ SELECT LEFT(user_name,20) as twitter_user, count(*) FROM
 EXERCISE FOR YOU: 
 Modify the previous SQL to Find the 5 most active twitter user names that tweet in spanish and how many tweets they have but only tweets in Spanish
 
+```
+     twitter_user     | count
+----------------------+-------
+ "\u064b"             |    14
+ "."                  |    14
+ "\ud83c\uddea\ud83c\ |    14
+ "Ana"                |    12
+ "Laura"              |    11
+ "Luis"               |    11
+ "Mar\u00eda"         |    11
+ "Juan"               |    11
+ "\ud835\udcdc\ud835\ |    11
+ "dilme"              |    10
+ "Yanet Rodriguez"    |     9
+ "Sof\u00eda"         |     9
+ "M"                  |     8
+ "\ud835\udd78\ud835\ |     8
+ "\ud835\udd77\ud835\ |     8
+ "\ud83c\udf19"       |     8
+ "Valentina"          |     8
+ "Sandra"             |     7
+ "Mario"              |     7
+ "Oscar"              |     7
+ "Eduardo"            |     7
+ "Santiago"           |     7
+ "\ud83c\uddfb\ud83c\ |     7
+ "edgar bolivar"      |     7
+ "\ud835\udc0b\ud835\ |     7
+ "Paula"              |     7
+ "Cristian"           |     7
+```
 ## STEP 6: Install PL/Python in twitter database
 ```
 create language plpython3u;
