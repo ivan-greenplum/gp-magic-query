@@ -87,6 +87,20 @@ Modify the previous SQL to Find the 5 most active twitter user names that tweet 
 create language plpython3u;
 ```
 
+## STEP 7: Sample Pl/Python function
+Create this function
+```
+CREATE OR REPLACE FUNCTION capitalize_string(input_text text)
+RETURNS text AS $$
+    return input_text.capitalize()
+$$ LANGUAGE plpython3u;
+```
+
+Run the function
+```
+SELECT capitalize_string('hello world');
+```
+
 ## STEP 7: PL/Python Exercise 1
 create a function that returns the first 20 characters of a tweet and CAPITALIZES the tweet if its "possibly_sensitive" according to the "possibly_sensitive" column
 Call the function and return the output for all tweets and output to a data file with the function return value and the "possibly_sensitive" column seperated as a CSV file called data.csv
