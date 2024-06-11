@@ -40,18 +40,16 @@ twitter=# \d+ tweets
 
 ## STEP 4: SQL EXERCISE 1
 Write a SQL to Find the 5 most active twitter user names and how many tweets they have
-GROUP BY QUERY
 
 EXAMPLE
 ```
-SELECT Department, COUNT(EmployeeName) AS NumberOfEmployees
-FROM Employees
-GROUP BY Department;
+SELECT LEFT(user_name,20) as twitter_user, count(*) FROM
+ tweets GROUP BY twitter_user ORDER by 2 desc;
 ```
 
 ## STEP 5: SQL EXERCISE 2
-Write a SQL to Find the 5 most active twitter user names that tweet in spanish and how many tweets they have but only tweets in Spanish
-Use a where query to limit the tweets on language
+EXERCISE FOR YOU: 
+Modify the previous SQL to Find the 5 most active twitter user names that tweet in spanish and how many tweets they have but only tweets in Spanish
 
 ## STEP 6: Install PL/Python in twitter database
 ```
