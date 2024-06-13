@@ -180,13 +180,65 @@ cp tweetdatafile.csv /mnt/c/Users/inovick/Downloads/
 ```
 
 ## Step 11: JSON Exercise 1
-Select the coordinates of tweets that have valid data and don't return a null json output.  Print coordinates as text
-https://www.postgresql.org/docs/9.4/functions-json.html
+Filter the tweets for tweets with valid coordinates of tweets that have valid data and don't return a null json output.  
+```
+CREATE TABLE geotweets AS
+SELECT *
+FROM tweets
+WHERE coordinates IS NOT NULL AND coordinates::text <> '' and coordinates::text <> 'null';
+```
 
-## Step 11: JSON Exercise 2
-Select the non-null geocoordinates tweets returning user_location field, and then longitude and lattitude field.  Confirm online with google/chatgpt that the user_location matches the long/lat 
+## Step 11: JSON Exercise 1
+Print coordinates as text
+```
+select coordinates::text from geotweets;
+```
 
-## Step 12: Postgis
+## Step 12: JSON Exercise 2
+Convert the coordinates to LAT/LONG and also return user_location field
+EXAMPLE OUTPUT
+```
+              user_location               |   longitude   |   latitude
+------------------------------------------+---------------+--------------
+ "Louisville, KY"                         |      -85.7276 |      38.2361
+ "Las Vegas, NV"                          |      -115.149 |      36.1675
+ "Madrid"                                 |       -3.8647 |      40.3218
+ "Karachi"                                |      -95.6368 |      29.6183
+ "Edmonton, Alberta"                      |    -113.51612 |      53.5035
+ "Chicago"                                |      -96.7255 |      17.0603
+ "Paraguay"                               |  -57.54013443 | -25.23498314
+ "La Costa, Argentina"                    |     -56.69164 |    -36.54087
+ "Carson, CA"                             |    -118.28494 |     33.80762
+ "Winnipeg, Manitoba"                     |   -97.1751082 |  49.78289497
+ "Westminster, MA"                        |    -118.26711 |     34.04312
+ "Williamsville, NY"                      |   -78.7489499 |     42.96233
+ "Palermo, Italy"                         |   13.37007926 |  38.11773613
+ "Saint Louis, MO"                        |   -90.3371889 |   38.6105426
+ "Springfield, IL"                        |   -88.9521125 |   39.9213359
+ "Detroit, MI"                            |   -83.2218731 |   42.4733688
+ "Tampa, FL"                              |      -82.5923 |      28.0432
+ "\u65e5\u672c \u5e83\u5cf6"              |  132.32191144 |  34.30085844
+ "Catol\u00e9 do Rocha, Brasil"           |     -37.74584 |      -6.3468
+ "Texas, Houston"                         |  -95.22071424 |   29.6193794
+ "Goldsboro, NC"                          |       -77.978 |       35.382
+ "Sedona, Arizona"                        | -111.76436906 |  34.77471729
+ "South Beach, FL"                        |  -80.13085376 |  25.78115433
+ "Chicago"                                |    -87.632496 |    41.883222
+ "San Leandro, CA"                        |      -118.347 |      34.2061
+ "San Francisco, CA"                      |  -122.4852507 |   37.8590937
+ "Fairfax, VA"                            |   -77.3209555 |   38.6805859
+```
+
+## Step 13: JSON Exercise 3
+Confirm online with google/chatgpt that the user_location matches the long/lat 
+For example:
+```
+The approximate latitude and longitude coordinates for Las Vegas, Nevada are:
+- Latitude: 36.1699° N
+- Longitude: 115.1398° W
+```
+
+## Step 14: Postgis
 Install postgis using gppkg as gpadmin
 gppkg install PACKAGENAME
 Login to Twitter database and create the extension
@@ -197,7 +249,7 @@ SELECT PostGIS_Version();
 
 https://postgis.net/workshops/postgis-intro/geography.html
 
-## Step 13: Load USSTATES data
+## Step 15: Load USSTATES data
 ```
 wget https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_500k.zip
 unzip cb_2018_us_state_500k.zip
@@ -210,12 +262,12 @@ select gid,name from usstates;
 ```
 https://postgis.net/workshops/postgis-intro/loading_data.html
 
-## Step 14: calculate the area of each usstates and sort by size
+## Step 16: calculate the area of each usstates and sort by size
 use ST_Area on the geom column
 https://postgis.net/docs/ST_Area.html
 
 
-## Step 15: write a inner join query between tweets and usstates
+## Step 17: write a inner join query between tweets and usstates
 first make a copy of tweets table and filter out null geos and also add a column for geom data type using ST_GeomFromGeoJSON
 you need to transform the coordinates system of one of the tables geometry to the same as the other
 ```
