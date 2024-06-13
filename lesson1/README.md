@@ -108,6 +108,20 @@ TIP: Write the function in a file called myfunc.sql and then run the file to imp
 
 EXPECTED SAMPLE OUTPUT:
 ```
+twitter=# select capitalize_string(tweet_text) from tweets limit 10;
+  capitalize_string
+----------------------
+ RT @RUBENCARABAJAL1:
+ @REAL_GREG_BRADY @PO
+ RT @GFIUZA_OFICIAL:
+ RT @RICKSANCHEZZ01:
+ RT @ELLENBEATRIZ_A:
+ @EG_CT @JHOYT15 @CIA
+ RT @MIKAIUST: A SIMP
+ DESISTI DA CONTA, ES
+ YOU DON'T HAVE TO SP
+ RT @CLAUDIO38748087:
+(10 rows)
 ```
 
 ## STEP 8: PL/Python Exercise 
