@@ -343,14 +343,72 @@ Example:
   32 | Montana       |  379,815,906,105
 ```
 
-## Step 17: write a inner join query between tweets and usstates
-first make a copy of tweets table and filter out null geos and also add a column for geom data type using ST_GeomFromGeoJSON
-you need to transform the coordinates system of one of the tables geometry to the same as the other
+## Step 18: Add postgis geometry for geostweets
+Add a new column and create a new table called **pgeotweets** by doing CTAS with a new column added by converting coordinates using ST_Transform(ST_GeomFromGeoJSON(coordinates), 4269)
 ```
- ST_Transform(t.st_geomfromgeojson, 4269)
+twitter=# \d pgeotweets
+                               Table "public.pgeotweets"
+         Column          |            Type             | Collation | Nullable | Default
+-------------------------+-----------------------------+-----------+----------+---------
+ id                      | bigint                      |           |          |
+ created_at              | timestamp without time zone |           |          |
+ coordinates             | json                        |           |          |
+ tweet_text              | text                        |           |          |
+ full_text               | text                        |           |          |
+ in_reply_to_status_id   | text                        |           |          |
+ in_reply_to_user_id     | text                        |           |          |
+ in_reply_to_screen_name | text                        |           |          |
+ user_id                 | bigint                      |           |          |
+ user_name               | text               9         |           |          |
+ user_location           | text                        |           |          |
+ hashtags                | json                        |           |          |
+ user_mentions           | json                        |           |          |
+ quote_count             | integer                     |           |          |
+ reply_count             | integer                     |           |          |
+ retweet_count           | integer                     |           |          |
+ favorite_count          | integer                     |           |          |
+ favorited               | boolean                     |           |          |
+ retweeted               | boolean                     |           |          |
+ possibly_sensitive      | boolean                     |           |          |
+ lang                    | text                        |           |          |
+ mentioned_user_ids      | bigint[]                    |           |          |
+ geom                    | geometry                    |           |          |
+Distributed randomly
+
 ```
+
+## Step 19: Compare geom, lat long with coordinates lat lang
+'''
+SELECT ST_Y(geom) AS latitude, ST_X(geom) AS longitude, coordinates FROM pgeotweets;
+'''
+
+## Step 20: write a inner join query between pgeotweets and usstates
+
+Now please do a join using ST Contains to print the tweets and their usstates
+
 You need to do aa join on containment of a point in a polygon, hint:
 ```
-FROM public.some_tweets t
-JOIN public.usstates s ON ST_Contains
+ SELECT
+    ST_Y(pgeotweets.geom) AS latitude,
+    ST_X(pgeotweets.geom) AS longitude,
+    pgeotweets.coordinates,
+    pgeotweets.user_location,
+    usstates.name
+FROM
+    pgeotweets
+JOIN
+    usstates
+ON
+    ST_Contains(usstates.geom, pgeotweets.geom);
 ```
+
+Do some validation to ensure the returning data is as correct in the join
+```
+  latitude   |   longitude   |                        coordinates                         |         user_location          |         name
+-------------+---------------+------------------------------------------------------------+--------------------------------+----------------------
+     37.8414 |      -82.0089 | {"type":"Point","coordinates":[-82.0089,37.8414]}          | "Mount Gay-Shamrock, WV"       | West Virginia
+     40.7727 |      -96.6807 | {"type":"Point","coordinates":[-96.6807,40.7727]}          | "Lincoln, NE"                  | Nebraska
+     47.6046 |     -122.3308 | {"type":"Point","coordinates":[-122.3308,47.6046]}         | "Florida, USA"                 | Washington
+```
+
+Note: where is lat 47 long -122
