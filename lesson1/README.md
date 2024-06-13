@@ -271,9 +271,15 @@ twitter=# SELECT PostGIS_Version();
 ```
 
 ## Step 15: Load USSTATES data
+
+Get the data files fron US Gov:
 ```
+sudo dnf install wget
 wget https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_500k.zip
 unzip cb_2018_us_state_500k.zip
+```
+Load the data into the twitter database
+```
 shp2pgsql -s 4269 -D cb_2018_us_state_500k.shp usstates > usstates.sql
 psql -f usstates.sql twitter
 ```
@@ -281,12 +287,61 @@ test in psql
 ```
 select gid,name from usstates;
 ```
-https://postgis.net/workshops/postgis-intro/loading_data.html
+
+OUTPUT:
+```
+twitter=# select gid,name from usstates;
+ gid |                     name
+-----+----------------------------------------------
+   2 | North Carolina
+   3 | Oklahoma
+   4 | Virginia
+   6 | Louisiana
+   7 | Michigan
+   8 | Massachusetts
+   9 | Idaho
+  10 | Florida
+  13 | New Mexico
+```
 
 ## Step 16: calculate the area of each usstates and sort by size
-use ST_Area on the geom column
-https://postgis.net/docs/ST_Area.html
+use ST_Area on the geom column to get the output of area by state
+```
+ gid |                     name                     |         area
+-----+----------------------------------------------+----------------------
+   1 | Mississippi                                  |    11.88541662019452
+   5 | West Virginia                                |    6.493879726220489
+  11 | Nebraska                                     |   21.614456008090006
+  12 | Washington                                   |    20.89963605560926
+  14 | Puerto Rico                                  |    0.771304755414308
+  15 | South Dakota                                 |   22.578331635133495
+  17 | California                                   |    41.66827322569092
+  20 | Pennsylvania                                 |    12.53583770321049
+  23 | Utah                                         |   22.975116780908895
+  25 | Wyoming                                      |   27.970714628094303
+  26 | New York                                     |   14.006968575208102
+  30 | Illinois                                     |   15.408210633680493
+  31 | Vermont                                      |   2.7979535129125015
+  35 | New Hampshire                                |    2.683566606943997
+  36 | Arizona                                      |   28.919220031715934
+```
 
+You can see above its 11 units for Mississippi, but that is not corresponding to SQ Miles or SQ Meters
+
+## Step 17: Convert the area to SQ Meters 
+there are approximately 125,443,000,000 square meters in Mississippi.
+there are approximately 380,831,000,000 square meters in Montana.
+
+You can use a ST_Transform on the geom with SRID: 2163
+Example:
+```
+ gid |     name      |      area_m2
+-----+---------------+--------------------
+   1 | Mississippi   | 123,563,796,126
+   7 | Michigan      | 150,729,671,806
+   8 | Massachusetts |  21,218,579,813
+  32 | Montana       |  379,815,906,105
+```
 
 ## Step 17: write a inner join query between tweets and usstates
 first make a copy of tweets table and filter out null geos and also add a column for geom data type using ST_GeomFromGeoJSON
