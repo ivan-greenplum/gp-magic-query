@@ -238,16 +238,37 @@ The approximate latitude and longitude coordinates for Las Vegas, Nevada are:
 - Longitude: 115.1398° W
 ```
 
-## Step 14: Postgis
+## Step 14: Install Postgis
 Install postgis using gppkg as gpadmin
-gppkg install PACKAGENAME
+
+```
+cp /mnt/c/Users/ivan/Downloads/postgis-3.3.2+pivotal.2.build.1-gp7-rhel8-x86_64.gppkg .
+```
+
+Install pre-req packages on Rocky 8
+```
+sudo dnf install libtiff
+```
+
+Install postgis
+```
+gppkg install postgis-3.3.2+pivotal.2.build.1-gp7-rhel8-x86_64.gppkg
+```
+
 Login to Twitter database and create the extension
 ```
 CREATE EXTENSION IF NOT EXISTS postgis;
 SELECT PostGIS_Version();
 ```
 
-https://postgis.net/workshops/postgis-intro/geography.html
+Output:
+```
+twitter=# SELECT PostGIS_Version();
+            postgis_version
+---------------------------------------
+ 3.3 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
+(1 row)
+```
 
 ## Step 15: Load USSTATES data
 ```
