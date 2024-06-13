@@ -124,48 +124,43 @@ twitter=# select capitalize_string(tweet_text) from tweets limit 10;
 (10 rows)
 ```
 
-## STEP 8: PL/Python Exercise 
-Call this function for each row in tweets table and limit the output to 30 rows.
-
-EXPECTED SAMPLE OUTPUT
-```
---------------------------------------------------
- WALLACE E JULIA TEND
- RT @BERDINESTA: CREO
- RT @MANOELMSGONTIJO:
- RT @SAO_ANIME: 【-エクス
- RT @LUV_OYE: #ASIMRI
- RT @HIMSELFZOOT: IF
- RT @CATINFORMACIO: @
- @SANYUWU Y PQ LAS CO
- RT @PCHDOTCOM: IF YO
- ネイサンがTOYOTAの所属？というツイ
- RT @OHHEYYDEEE: SIS
- RT @WOLFFWALDO: TENE
- THE SAD TRUTH IS THA
- RT @JBFAN911: A LARG
- RT @TROLLFOOTBALL: S
- RAINBOW HOLOFOIL BUB
- YO VENGO A LEER EL P
- RT @MINBINHO: O MINH
- @THISISECW2020 @DEAN
- RT @SINGHLIONS: WE W
- RT @JESSYCAVITORIAA:
- @BEVOOHMATRON @71_HE
- RT @BEPPESALA: DOBBI
- RT @JALI_CAT: SO LET
- IPHONE 6S, DROPPED I
- @TEAMYOUTUBE I HAVE
- RT @LANNA2231: HOJE
- RT @CHANYEOLIT: 2001
- RT @SENTRYISVOID: LM
- EU
-(30 rows)
-```
-
 ## STEP 9: PL/Python Exercise 
 Modify the function to return returns the first 20 characters of a tweet and CAPITALIZES the tweet if its "possibly_sensitive" according to the "possibly_sensitive" column and lower case it if its not sensitive according to that field.
+
+EXAMPLE OUTPUT
 ```
+twitter=# select capitalize_string(tweet_text, possibly_sensitive) from tweets where possibly_sensitive = 't' and lang='en' limit 10;
+  capitalize_string
+----------------------
+ RT @0RUBENMARTINEZ0:
+ RT @IAM_JOHNW: THERE
+ RT @JOONSJINN: CHEA
+ 2 SATELLITES ON POSS
+ @RELLYCOOPER WHO RAI
+ RT @HUMORANDANIMALS:
+ RT @KOKOBUTTZ: GIFT
+ RT @APPE4L: AFTER A
+ RT @WINGSFORX1: EVEN
+ RT @WITH_YUGYEOM: YU
+(10 rows)
+
+twitter=# select capitalize_string(tweet_text, possibly_sensitive) from tweets where possibly_sensitive = 'f' and lang='
+en' limit 10;
+   capitalize_string
+------------------------
+ you don't have to sp
+ .@nctq’s #2020tpr is
+ "needing benefits is
+ rt @mrfegaa: please
+ rt @tintinresists: @
+ rt @aewontnt: can we
+ gms newest super cru
+ rt @mialis79: never
+ rt @jayyarrrrm_: nev
+ rt @allovic87: he lo
+(10 rows)
+
+twitter=#
 ```
 
 ## STEP 10: PL/Python Exercise 
