@@ -163,19 +163,23 @@ en' limit 10;
 twitter=#
 ```
 
-## STEP 10: PL/Python Exercise 
+## STEP 10: Exporting results
 
-
-Call the function and return the output for all tweets and output to a data file with the function return value and the "possibly_sensitive" column seperated as a CSV file called data.csv
-
+Export the data into a csv file
 ```
-psql -f myfunc.sql twitter
+COPY (SELECT possibly_sensitive, capitalize_string(tweet_text, possibly_sensitive) 
+      FROM tweets 
+      ORDER BY 1) 
+TO '/home/gpadmin/tweetdatafile.csv' 
+WITH CSV HEADER;
 ```
-OUTPUT: 
 
+Get the file and have a look (windows command):
+```
+cp tweetdatafile.csv /mnt/c/Users/inovick/Downloads/
+```
 
-
-## Step 10: JSON Exercise 1
+## Step 11: JSON Exercise 1
 Select the coordinates of tweets that have valid data and don't return a null json output.  Print coordinates as text
 https://www.postgresql.org/docs/9.4/functions-json.html
 
