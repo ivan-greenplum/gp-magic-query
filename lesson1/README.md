@@ -1,3 +1,4 @@
+
 # This is a structured lab that you can follow to use this course to learn sequentially
 
 ## STEP 1: Install Greenplum on a Linux VM or HOST
@@ -24,7 +25,21 @@ run the data load
 createdb twitter
 psql twitter -f gp-magic-query/load-data-framework/twitter_data.sql
 ```
-Validate the data is in the system
+Validate the data is in the system.
+
+First login to the twitter database
+```
+psql twitter
+```
+After login you will be at the database prompt for the twitter database
+```
+twitter=#
+```
+Now run this query to count the rows of data in tweets table
+```
+select count(*) from tweets;
+```
+You will see this outputs:
 ```
 twitter=# select count(*) from tweets;
  count
