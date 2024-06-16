@@ -434,15 +434,7 @@ create extension vector
 ```
 
 ## Step 22: Install postgresml
-First install needed dependancies.  
-Login as Root and install these packages:
-
-Install OS packages
+Install Data Science Package
 ```
-dnf install cmake gcc gcc-c++
-```
-
-Install xgboost
-```
-pip3 install xgboost
+gppkg install DataSciencePython3.9-2.1.0-gp7-el8_x86_64.gppkg
 ```
