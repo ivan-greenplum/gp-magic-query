@@ -427,3 +427,9 @@ Do some validation to ensure the returning data is as correct in the join
 ```
 
 Note: where is lat 47 long -122
+
+## Step 21: Install pgvector
+```
+create extension vector
+```
+
