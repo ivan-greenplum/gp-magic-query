@@ -446,3 +446,13 @@ Create extension
 ```
 create extension postgresml
 ```
+
+## Step 23: Add Vector Column to geotweets
+```
+ALTER TABLE geotweets ADD COLUMN tweet_embedding VECTOR(300);
+```
+
+## Step 23: Generate embeddings
+```
+SELECT pgml.embed('intfloat/e5-small-v2',tweet_twext) from geotweets limit 1;
+```
