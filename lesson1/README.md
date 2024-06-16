@@ -433,3 +433,16 @@ Note: where is lat 47 long -122
 create extension vector
 ```
 
+## Step 22: Install postgresml
+First install needed dependancies.  
+Login as Root and install these packages:
+
+Install OS packages
+```
+dnf install cmake gcc gcc-c++
+```
+
+Install xgboost
+```
+pip3 install xgboost
+```
