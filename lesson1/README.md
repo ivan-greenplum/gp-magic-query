@@ -438,6 +438,9 @@ Install Data Science Package
 ```
 gppkg install DataSciencePython3.9-2.1.0-gp7-el8_x86_64.gppkg
 ```
+Follow steps:
+https://docs.vmware.com/en/VMware-Greenplum/7/greenplum-database/ref_guide-modules-postgresml.html
+# Note this needs more details, give it a try
 
 Create extension
 ```
