@@ -438,3 +438,8 @@ Install Data Science Package
 ```
 gppkg install DataSciencePython3.9-2.1.0-gp7-el8_x86_64.gppkg
 ```
+
+Create extension
+```
+create extension postgresml
+```
