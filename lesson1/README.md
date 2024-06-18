@@ -439,21 +439,85 @@ Install Data Science Package
 gppkg install DataSciencePython3.9-2.1.0-gp7-el8_x86_64.gppkg
 ```
 
+set the shared library
 ```
 gpconfig -c shared_preload_libraries -v 'pgml'
-```
-
-```
-gpconfig -c pgml.venv -v '$GPHOME/ext/DataSciencePython3.9'
-```
-
-```
 gpstop -ra
 ```
+
+Set the virtual env
+```
+gpconfig -c pgml.venv -v '$GPHOME/ext/DataSciencePython3.9'
+gpstop -ra
+```
+
 
 Create extension
 ```
 create extension postgresml
+```
+
+Test postgresml
+```
+SELECT pgml.transform( 
+    'translation_en_to_fr', 
+    inputs => ARRAY[ 
+        'Welcome to the future!', 
+        'Where have you been all this time?' 
+    ] 
+) AS french;
+```
+
+
+GOT THIS ERROR:
+```
+witter=# SELECT pgml.transform(
+r',
+    inputs => ARRAY[
+     twitter(#     'translation_en_to_fr',
+twitter(#     inputs => ARRAY[
+twitter(#         'Welcome to the future!',
+twitter(#         'Where have you been all this time?'
+twitter(#     ]
+twitter(# ) AS french;
+ERROR:  Traceback (most recent call last):
+  File "", line 7, in <module>
+  File "/usr/local/lib/python3.9/site-packages/InstructorEmbedding/__init__.py", line 1, in <module>
+    from .instructor import *
+  File "/usr/local/lib/python3.9/site-packages/InstructorEmbedding/instructor.py", line 2, in <module>
+    import torch
+  File "/usr/local/lib64/python3.9/site-packages/torch/__init__.py", line 1921, in <module>
+    from . import _meta_registrations
+  File "/usr/local/lib64/python3.9/site-packages/torch/_meta_registrations.py", line 9, in <module>
+    from torch._decomp import (
+  File "/usr/local/lib64/python3.9/site-packages/torch/_decomp/__init__.py", line 244, in <module>
+    import torch._decomp.decompositions
+  File "/usr/local/lib64/python3.9/site-packages/torch/_decomp/decompositions.py", line 11, in <module>
+    import torch._prims as prims
+  File "/usr/local/lib64/python3.9/site-packages/torch/_prims/__init__.py", line 3031, in <module>
+    register_debug_prims()
+  File "/usr/local/lib64/python3.9/site-packages/torch/_prims/debug_prims.py", line 41, in register_debug_prims
+    def load_tensor_factory(name, size, stride, dtype, device):
+  File "/usr/local/lib64/python3.9/site-packages/torch/_custom_op/impl.py", line 333, in inner
+    self._register_impl("factory", f)
+  File "/usr/local/lib64/python3.9/site-packages/torch/_custom_op/impl.py", line 223, in _register_impl
+    frame = inspect.getframeinfo(sys._getframe(stacklevel))
+  File "/usr/lib64/python3.9/inspect.py", line 1505, in getframeinfo
+    lines, lnum = findsource(frame)
+  File "/usr/lib64/python3.9/inspect.py", line 829, in findsource
+    module = getmodule(object, file)
+  File "/usr/lib64/python3.9/inspect.py", line 752, in getmodule
+    f = getabsfile(module)
+  File "/usr/lib64/python3.9/inspect.py", line 721, in getabsfile
+    _filename = getsourcefile(object) or getfile(object)
+  File "/usr/lib64/python3.9/inspect.py", line 697, in getsourcefile
+    filename = getfile(object)
+  File "/usr/local/lib64/python3.9/site-packages/torch/package/package_importer.py", line 698, in _patched_getfile
+    return _orig_getfile(object)
+  File "/usr/lib64/python3.9/inspect.py", line 660, in getfile
+    raise TypeError('{!r} is a built-in module'.format(object))
+ TypeError: <module '' from ''> is a built-in module (api.rs:639)
+
 ```
 
 ## Step 23: Add Vector Column to geotweets
