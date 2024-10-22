@@ -8,8 +8,9 @@
 ```
 gpstop
 gpstart
-create table foo as select generate_series(1,100);
-select * from foo;
+create schema hello;
+create table hello.foo as select generate_series(1,100);
+select * from hello.foo;
 ```
 
 ## Step 3: Load the twitter data set
