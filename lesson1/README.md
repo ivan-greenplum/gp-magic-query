@@ -484,7 +484,7 @@ ALTER TABLE pgeotweets ADD COLUMN tweet_embedding VECTOR(300);
 
 ## Step 23: Test embeddings generation function
 ```
-SELECT pgml.embed('intfloat/e5-small-v2',tweet_twext) from pgeotweets limit 1;
+SELECT pgml.embed('intfloat/e5-small-v2',tweet_text) from pgeotweets limit 1;
 ```
 If you get an error you may be missing some depenencies on the system
 
