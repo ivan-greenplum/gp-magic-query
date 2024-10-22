@@ -479,7 +479,7 @@ GOT THIS OUTPUT:
 
 ## Step 23: Add Vector Column to geotweets
 ```
-ALTER TABLE pgeotweets ADD COLUMN tweet_embedding VECTOR(300);
+ALTER TABLE pgeotweets ADD COLUMN tweet_embedding VECTOR(384);
 ```
 
 ## Step 23: Test embeddings generation function
