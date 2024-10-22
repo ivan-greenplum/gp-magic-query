@@ -479,17 +479,17 @@ GOT THIS OUTPUT:
 
 ## Step 23: Add Vector Column to geotweets
 ```
-ALTER TABLE geotweets ADD COLUMN tweet_embedding VECTOR(300);
+ALTER TABLE pgeotweets ADD COLUMN tweet_embedding VECTOR(300);
 ```
 
 ## Step 23: Test embeddings generation function
 ```
-SELECT pgml.embed('intfloat/e5-small-v2',tweet_twext) from geotweets limit 1;
+SELECT pgml.embed('intfloat/e5-small-v2',tweet_twext) from pgeotweets limit 1;
 ```
 If you get an error you may be missing some depenencies on the system
 
 ## Step 24: Generate embeddedings for the data in the geotweets table
 ```
-UPDATE geotweets
+UPDATE pgeotweets
 SET tweet_embedding = pgml.embed('intfloat/e5-small-v2', tweet_text);
 ```
