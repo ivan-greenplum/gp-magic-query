@@ -394,9 +394,9 @@ Distributed randomly
 ```
 
 ## Step 19: Compare geom, lat long with coordinates lat lang
-'''
+```
 SELECT ST_Y(geom) AS latitude, ST_X(geom) AS longitude, coordinates FROM pgeotweets;
-'''
+```
 
 ## Step 20: write a inner join query between pgeotweets and usstates
 
